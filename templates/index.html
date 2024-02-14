@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultar Precios</title>
+    <style>
+      body {
+    background-image: url('https://i.postimg.cc/bJBDBpLX/diseno1.png');
+    background-color: rgb(243, 246, 248);
+    background-size: contain; /* Ajusta el tamaño de la imagen al 100% del ancho y alto del contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Establece el tipo de letra a Cambria */
+    font-size: 20px; /* Establece el tamaño de la letra a 16px */
+}
+
+
+      form {
+          margin-bottom: 20px;
+      }
+
+      #result {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      button {
+          display: none; /* Oculta el botón de buscar */
+      }
+
+      #result p {
+          font-size: 40px; /* Aumenta el tamaño de la letra del resultado de VALOR a 20px */
+          font-weight: bold;
+      }
+
+      input[type="text"] {
+          width: 300px; /* Aumenta el ancho del campo de entrada a 300px */
+          height: 30px; /* Aumenta el alto del campo de entrada a 30px */
+      }
+    </style>
+    <script>
+      setTimeout(function () {
+        document.getElementById("result").style.display = "none";
+        document.getElementById("id").focus();
+      }, 5000); // 5 segundos
+
+      window.onload = function() {
+      document.getElementById("id").focus();
+      };
+      
+    </script>
+  </head>
+  <body>
+    <h1>INGRESA EL CODIGO</h1>
+    <form action="/" method="POST">
+      <label for="id"></label>
+      <input type="text" id="id" name="id" />
+      <button type="submit">Buscar</button>
+    </form>
+
+    {% if row %}
+    <div id="result">
+      <h2>{{ row.NOMBRE }}</h2>
+      <p>{{ row.VALOR }}</p>
+    </div>
+    {% endif %}
+
+    {% if no_result %}
+    <div id="result">
+      <p>NO SE ENCONTRO EL CODIGO SOLICITADO.</p>
+    </div>
+    {% endif %}
+  </body>
+</html>
